@@ -20,6 +20,10 @@
           maven-aws-role: <<AWS_ROLE_TO_ASSUME>>
 ```
 
+# Advanced settings
+
+* _jvm-options_ - Maven Java virtual machine settings like memory configuration
+
 # License Summary
 
 This code is made available under the MIT license. Details [here](LICENSE).

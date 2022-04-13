@@ -22,6 +22,10 @@ inputs:
     description: "Comma separated list of submodules which should be build (e.g. only changed modules), e.g: submodule,submodule/pom.xml"
     required: false
     default: ""
+  jvm-options:
+    description: "Maven Java virtual machine options"
+    required: false
+    default: "-Xmx6g"
 
   maven-aws-access-key:
     description: "Aws access key for maven aws plugins."
@@ -36,6 +40,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Maven options
+      shell: bash
+      run: |
+        export MAVEN_OPTS="${{ inputs.jvm-options }}"
+
     - name: Run maven command
       shell: bash
       run: |
