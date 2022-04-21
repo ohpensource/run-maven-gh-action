@@ -61,8 +61,13 @@ runs:
           --fail-at-end \
         ${{ inputs.phases }}
       env:
+        # AWS SDK v1
         AWS_ACCESS_KEY: ${{ inputs.maven-aws-access-key }}
+        AWS_SECRET_KEY: ${{ inputs.maven-aws-secret-key }}
+        # AWS SDK v2
+        AWS_ACCESS_KEY_ID: ${{ inputs.maven-aws-access-key }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.maven-aws-secret-key }}
+        # internal property used in assume role AWS credential provider
         AWS_ASSUME_ROLE_ARN: ${{ inputs.maven-aws-role }}
 
     - name: Save Maven cache
