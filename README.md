@@ -3,6 +3,7 @@
 * Action runs maven command with supplied parameters. 
 * Includes saving cache after build. 
 * In case that build needs to assume aws role use optional parameter: maven-aws-role.
+    * Maven step configure credentials environment variables for **AWS SDK v1/v2** and _AWS_ASSUME_ROLE_ARN_ for assume role credentials provider
 
 ```yaml
       - uses: ohpensource/run-maven-gh-action@v0.1.0
