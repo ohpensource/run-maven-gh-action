@@ -24,6 +24,7 @@
 # Advanced settings
 
 * _jvm-options_ - Maven Java virtual machine settings like memory configuration
+    * if missing JVM **-Xmx** parameter then action automatically calculate maximally available memory for maven process
 
 # License Summary
 
