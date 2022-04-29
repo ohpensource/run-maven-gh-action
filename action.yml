@@ -52,7 +52,6 @@ runs:
           echo "Memory settings: total=${MEM_TOTAL}MB, system=${MEM_SYSTEM}MB, available=${MEM_AVAILABLE}MB"
           MAVEN_OPTS="$MAVEN_OPTS -Xmx${MEM_AVAILABLE}m"
         fi
-        echo "Maven options: $MAVEN_OPTS"
         echo "MAVEN_OPTS=$MAVEN_OPTS" >> $GITHUB_ENV
 
     - name: Run maven command
