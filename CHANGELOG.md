@@ -1,3 +1,15 @@
+# :confetti_ball: 0.2.0 (2022-04-29T13:31:48.953Z)
+- - -
+## :hammer: Features
+* CLIC-7519 define credentials environment variables for AWS SDK v1 and v2
+* CLIC-7519 automatically calculate maximal available memory form maven process
+## :bug: Fixes
+* CLIC-7519 put MAVEN_OPTS to GITHUB_ENV file
+* CLIC-7519 remove echo comment which print Maven options information - stored into GITHUB_ENV
+## :newspaper: Others
+* docs: CLIC-7519 documentation for added credentials environment variables for AWS SDK v1 and v2
+- - -
+- - -
 # :confetti_ball: 0.1.0 (2022-04-13T09:30:07.692Z)
 - - -
 ## :hammer: Features
