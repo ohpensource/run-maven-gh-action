@@ -43,16 +43,17 @@ runs:
     - name: Maven options
       shell: bash
       run: |
-        export MAVEN_OPTS="${{ inputs.jvm-options }}"
+        MAVEN_OPTS="${{ inputs.jvm-options }}"
         if [[ ! "$MAVEN_OPTS" =~ .*"-Xmx".* ]]; then
           MEM_TOTAL=$(cat /proc/meminfo | grep MemTotal | awk '$3=="kB"{$2=int($2/1024); print $2}')
           MEM_SYSTEM=1536
           MEM_AVAILABLE=$(($MEM_TOTAL - $MEM_SYSTEM))
 
           echo "Memory settings: total=${MEM_TOTAL}MB, system=${MEM_SYSTEM}MB, available=${MEM_AVAILABLE}MB"
-          export MAVEN_OPTS="$MAVEN_OPTS -Xmx${MEM_AVAILABLE}m"
+          MAVEN_OPTS="$MAVEN_OPTS -Xmx${MEM_AVAILABLE}m"
         fi
         echo "Maven options: $MAVEN_OPTS"
+        echo "MAVEN_OPTS=$MAVEN_OPTS" >> $GITHUB_ENV
 
     - name: Run maven command
       shell: bash
