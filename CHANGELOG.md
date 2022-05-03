@@ -1,3 +1,11 @@
+# :confetti_ball: 0.2.1 (2022-05-03T10:44:02.094Z)
+- - -
+## :bug: Fixes
+* CLIC-7519 remove memory for system
+## :newspaper: Others
+* docs: CLIC-7519 added documentation for "save-cache" input parameter
+- - -
+- - -
 # :confetti_ball: 0.2.0 (2022-04-29T13:31:48.953Z)
 - - -
 ## :hammer: Features
