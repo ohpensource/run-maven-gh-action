@@ -1,3 +1,11 @@
+# :confetti_ball: 0.3.0 (2023-01-16T08:46:39.963Z)
+- - -
+## :hammer: Features
+* OIMP-190 update GH actions versions
+## :newspaper: Others
+* docs: OIMP-190 empty line
+- - -
+- - -
 # :confetti_ball: 0.2.1 (2022-05-03T10:44:02.094Z)
 - - -
 ## :bug: Fixes
