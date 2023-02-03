@@ -54,6 +54,15 @@ runs:
         fi
         echo "MAVEN_OPTS=$MAVEN_OPTS" >> $GITHUB_ENV
 
+    - name: Prepare maven arguments
+      shell: bash
+      run: |
+        if [[ ${{ inputs.build-modules }} != '' ]]; then
+          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make" >> $GITHUB_ENV
+        else
+          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make-dependents" >> $GITHUB_ENV
+        fi
+
     - name: Run maven command
       shell: bash
       run: |
@@ -62,7 +71,7 @@ runs:
           ${{ inputs.parameters }} \
           -Duser.timezone="Europe/Amsterdam" \
           -DuseGitHub=true \
-          --also-make-dependents \
+          ${{ env.ADDITIONAL_MAVEN_ARGUMENTS }} \
           --projects "${{ inputs.build-modules }}" \
           --threads ${{ inputs.threads }} \
           --update-snapshots \
