@@ -17,7 +17,7 @@ inputs:
   save-cache:
     description: "If cache should be saved after maven run"
     required: false
-    default: "true"
+    default: true
   build-modules:
     description: "Comma separated list of submodules which should be build (e.g. only changed modules), e.g: submodule,submodule/pom.xml"
     required: false
@@ -26,6 +26,10 @@ inputs:
     description: "Maven Java virtual machine options"
     required: false
     default: ""
+  make-dependants:
+    description: "If dependant modules should be built. Should be used with `build-modules`"
+    default: true
+    required: false
 
   maven-aws-access-key:
     description: "Aws access key for maven aws plugins."
@@ -62,7 +66,7 @@ runs:
           ${{ inputs.parameters }} \
           -Duser.timezone="Europe/Amsterdam" \
           -DuseGitHub=true \
-          --also-make-dependents \
+          ${{ !inputs.make-dependants && '--also-make-dependents' }} \
           --projects "${{ inputs.build-modules }}" \
           --threads ${{ inputs.threads }} \
           --update-snapshots \
