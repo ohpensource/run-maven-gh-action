@@ -1,3 +1,10 @@
+# :confetti_ball: 0.4.0 (2023-02-08T10:24:05.481Z)
+- - -
+## :hammer: Features
+* CRA-2903 added step for determining additional maven arguments based on build-modules
+* CRA-2903 PR improvements
+- - -
+- - -
 # :confetti_ball: 0.3.0 (2023-01-16T08:46:39.963Z)
 - - -
 ## :hammer: Features
