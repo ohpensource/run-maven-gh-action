@@ -63,9 +63,9 @@ runs:
       id: prepare_maven_arguments
       run: |
         if [[ ${{ inputs.build-dependant-modules }} == 'true' ]]; then
-          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make-dependents" >> GITHUB_OUTPUT
+          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make-dependents" >> $GITHUB_OUTPUT
         else
-          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make" >> GITHUB_OUTPUT
+          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make" >> $GITHUB_OUTPUT
         fi
 
     - name: Run maven command
