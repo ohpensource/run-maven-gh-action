@@ -22,6 +22,10 @@ inputs:
     description: "Comma separated list of submodules which should be build (e.g. only changed modules), e.g: submodule,submodule/pom.xml"
     required: false
     default: ""
+  build-dependant-modules:
+    description: "Use [true] for argument _--also-make-dependents_, [false] for argument _--also-make_"
+    required: false
+    default: "true"
   jvm-options:
     description: "Maven Java virtual machine options"
     required: false
@@ -54,6 +58,16 @@ runs:
         fi
         echo "MAVEN_OPTS=$MAVEN_OPTS" >> $GITHUB_ENV
 
+    - name: Prepare maven arguments
+      shell: bash
+      id: prepare_maven_arguments
+      run: |
+        if [[ ${{ inputs.build-dependant-modules }} == 'true' ]]; then
+          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make-dependents" >> GITHUB_OUTPUT
+        else
+          echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make" >> GITHUB_OUTPUT
+        fi
+
     - name: Run maven command
       shell: bash
       run: |
@@ -62,7 +76,7 @@ runs:
           ${{ inputs.parameters }} \
           -Duser.timezone="Europe/Amsterdam" \
           -DuseGitHub=true \
-          --also-make-dependents \
+          ${{ steps.prepare_maven_arguments.outputs.ADDITIONAL_MAVEN_ARGUMENTS }} \
           --projects "${{ inputs.build-modules }}" \
           --threads ${{ inputs.threads }} \
           --update-snapshots \

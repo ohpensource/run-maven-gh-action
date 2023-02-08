@@ -26,6 +26,7 @@
 * _save-cache_ - If cache should be saved after maven run
 * _jvm-options_ - Maven Java virtual machine settings like memory configuration
     * if missing JVM **-Xmx** parameter then action automatically calculate maximally available memory for maven process
+* _build-dependant-modules_ - Use [true] for argument _--also-make-dependents_, [false] for argument _--also-make_
 
 # License Summary
 
