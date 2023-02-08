@@ -1,3 +1,10 @@
+# :confetti_ball: 0.4.1 (2023-02-08T15:46:03.549Z)
+- - -
+## :bug: Fixes
+* CRA-2903 fixed bad setting of step output
+* CRA-2903 empty readme change
+- - -
+- - -
 # :confetti_ball: 0.4.0 (2023-02-08T10:24:05.481Z)
 - - -
 ## :hammer: Features
