@@ -95,6 +95,6 @@ runs:
 
     - name: Save Maven cache
       if: always() && inputs.save-cache == 'true'
-      uses: skjolber/maven-cache-github-action@v1.1
+      uses: rbrisuda/maven-cache-github-action@node16
       with:
         step: save

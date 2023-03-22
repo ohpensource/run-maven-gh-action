@@ -21,6 +21,11 @@
           maven-aws-role: <<AWS_ROLE_TO_ASSUME>>
 ```
 
+**Note:**
+
+This action: [https://github.com/skjolber/maven-cache-github-action] was replaced by equivalent fork with fixed
+deprecated GitHub commands and node version. If original repo action will be fixed, we can move to new version.
+
 # Advanced settings
 
 * _save-cache_ - If cache should be saved after maven run
