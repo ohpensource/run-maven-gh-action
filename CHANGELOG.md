@@ -1,3 +1,9 @@
+# :confetti_ball: 0.5.0 (2023-03-22T11:08:45.008Z)
+- - -
+## :hammer: Features
+* DOCS-2044 fixed deprecated github commands (#9)
+- - -
+- - -
 # :confetti_ball: 0.4.1 (2023-02-08T15:46:03.549Z)
 - - -
 ## :bug: Fixes
