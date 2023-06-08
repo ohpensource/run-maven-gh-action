@@ -32,7 +32,7 @@ inputs:
     default: ""
 
   maven-aws-profile:
-    description: "Maven profile used for running maven job. Default is set ,if using, in setup maven action."
+    description: "Maven profile used for running maven job. Default is set, if using, in setup-maven-action"
     required: false
   plugins-aws-profile:
     description: "Maven profile used in maven plugins. Default is: maven-aws-profile"
@@ -65,12 +65,12 @@ runs:
           echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make" >> $GITHUB_OUTPUT
         fi
 
-    - name: '[DEPRECATED] Prepare credentials for plugins. Move to SDK 2.'
+    - name: '[DEPRECATED] Prepare credentials for plugins. Move to SDK 2'
       shell: bash
       id: prepare-plugins-credentials
       run: |
         ROLE_ARN=$(aws configure get role_arn --profile ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }})
-        SOURCE_PROFILE=$(aws configure get source_profile --profile ${{ inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }})
+        SOURCE_PROFILE=$(aws configure get source_profile --profile ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }})
         
         AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile ${SOURCE_PROFILE})
         AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile ${SOURCE_PROFILE})
