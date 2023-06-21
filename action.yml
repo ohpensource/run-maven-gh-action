@@ -31,14 +31,11 @@ inputs:
     required: false
     default: ""
 
-  maven-aws-access-key:
-    description: "Aws access key for maven aws plugins."
+  maven-aws-profile:
+    description: "Maven profile used for running maven job. Default is set, if using, in setup-maven-action"
     required: false
-  maven-aws-secret-key:
-    description: "Aws secret key for maven aws plugins."
-    required: false
-  maven-aws-role:
-    description: "Role to assume for maven aws plugins."
+  plugins-aws-profile:
+    description: "Maven profile used in maven plugins. Default is: maven-aws-profile"
     required: false
 
 runs:
@@ -68,6 +65,22 @@ runs:
           echo "ADDITIONAL_MAVEN_ARGUMENTS=--also-make" >> $GITHUB_OUTPUT
         fi
 
+    - name: '[DEPRECATED] Prepare credentials for plugins. Move to SDK 2'
+      shell: bash
+      id: prepare-plugins-credentials
+      run: |
+        ROLE_ARN=$(aws configure get role_arn --profile ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }})
+        SOURCE_PROFILE=$(aws configure get source_profile --profile ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }})
+        
+        AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile ${SOURCE_PROFILE})
+        AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile ${SOURCE_PROFILE})
+        AWS_SESSION_TOKEN=$(aws configure get aws_session_token --profile ${SOURCE_PROFILE})
+        
+        echo "role_arn=${ROLE_ARN}" >> $GITHUB_OUTPUT
+        echo "aws_access_key_id=${AWS_ACCESS_KEY_ID}" >> $GITHUB_OUTPUT
+        echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> $GITHUB_OUTPUT
+        echo "aws_session_token=${AWS_SESSION_TOKEN}" >> $GITHUB_OUTPUT
+
     - name: Run maven command
       shell: bash
       run: |
@@ -84,17 +97,17 @@ runs:
           --fail-at-end \
         ${{ inputs.phases }}
       env:
-        # AWS SDK v1
-        AWS_ACCESS_KEY: ${{ inputs.maven-aws-access-key }}
-        AWS_SECRET_KEY: ${{ inputs.maven-aws-secret-key }}
-        # AWS SDK v2
-        AWS_ACCESS_KEY_ID: ${{ inputs.maven-aws-access-key }}
-        AWS_SECRET_ACCESS_KEY: ${{ inputs.maven-aws-secret-key }}
-        # internal property used in assume role AWS credential provider
-        AWS_ASSUME_ROLE_ARN: ${{ inputs.maven-aws-role }}
+        MAVEN_AWS_PROFILE: ${{ inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }}
+        AWS_PROFILE: ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }}
+
+        # DEPRECATED: Used for assuming role via env credentials provider in SDK 1
+        AWS_ACCESS_KEY_ID: ${{ steps.prepare-plugins-credentials.outputs.aws_access_key_id }}
+        AWS_SECRET_KEY: ${{ steps.prepare-plugins-credentials.outputs.aws_secret_access_key }}
+        AWS_SESSION_TOKEN: ${{ steps.prepare-plugins-credentials.outputs.aws_session_token }}
+        AWS_ASSUME_ROLE_ARN: ${{ steps.prepare-plugins-credentials.outputs.role_arn }}
 
     - name: Save Maven cache
       if: always() && inputs.save-cache == 'true'
-      uses: rbrisuda/maven-cache-github-action@node16
+      uses: skjolber/maven-cache-github-action@v2.0
       with:
         step: save

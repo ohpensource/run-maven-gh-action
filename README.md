@@ -2,8 +2,9 @@
 
 * Action runs maven command with supplied parameters. 
 * Includes saving cache after build. 
-* In case that build needs to assume aws role use optional parameter: maven-aws-role.
-    * Maven step configure credentials environment variables for **AWS SDK v1/v2** and _AWS_ASSUME_ROLE_ARN_ for assume role credentials provider
+* Maven run command uses: **maven-aws-profile** for running build. 
+* It sets also environment variables to be backward compatible with AWS SDK v.1.
+** for this purpose is used **plugins-aws-profile** if not set, then: **maven-aws-profile**
 
 ```yaml
       - uses: ohpensource/run-maven-gh-action@v0.1.0
@@ -16,15 +17,7 @@
             -Denable.deploy=false
           threads: 1C
           save-cache: true
-          maven-aws-access-key: <<AWS_ACCESS_KEY>>
-          maven-aws-secret-key: <<AWS_SECRET_KEY>>
-          maven-aws-role: <<AWS_ROLE_TO_ASSUME>>
 ```
-
-**Note:**
-
-This action: [https://github.com/skjolber/maven-cache-github-action] was replaced by equivalent fork with fixed
-deprecated GitHub commands and node version. If original repo action will be fixed, we can move to new version.
 
 # Advanced settings
 
