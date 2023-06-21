@@ -1,3 +1,10 @@
+# :confetti_ball: 0.6.0 (2023-06-21T12:50:52.946Z)
+- - -
+## :hammer: Features
+* HUBSA-2362 pass proper profiles to maven build
+* HUBSA-2362 removed dots
+- - -
+- - -
 # :confetti_ball: 0.5.0 (2023-03-22T11:08:45.008Z)
 - - -
 ## :hammer: Features
