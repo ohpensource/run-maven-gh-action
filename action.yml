@@ -50,7 +50,16 @@ runs:
           MEM_SYSTEM=2048
           MEM_AVAILABLE=$(($MEM_TOTAL - $MEM_SYSTEM))
 
+          CPU_TOTAL=$(cat /proc/cpuinfo | grep processor | wc -l)
+          CPU_USED=${{ inputs.threads }}
+          if [[ "$CPU_USED" =~ ^[0-9.]+[Cc]$ ]]; then
+            CPU_USED=$CPU_TOTAL
+          fi
+          echo "CPU settings: total=${CPU_TOTAL}, used=${CPU_USED}"
+        
+          MEM_AVAILABLE=$(($MEM_AVAILABLE / $CPU_USED))
           echo "Memory settings: total=${MEM_TOTAL}MB, system=${MEM_SYSTEM}MB, available=${MEM_AVAILABLE}MB"
+
           MAVEN_OPTS="$MAVEN_OPTS -Xmx${MEM_AVAILABLE}m"
         fi
         echo "MAVEN_OPTS=$MAVEN_OPTS" >> $GITHUB_ENV
