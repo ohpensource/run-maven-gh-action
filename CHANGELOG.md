@@ -1,3 +1,12 @@
+# :confetti_ball: 0.7.0 (2023-07-12T10:09:15.804Z)
+- - -
+## :hammer: Features
+* PE-2328 include also number of CPU cores in calculation of available memory used by maven
+## :newspaper: Others
+* docs: PE-2328 added description for threads input parameter into README file
+* docs: PE-2328 update comments for memory calculation
+- - -
+- - -
 # :confetti_ball: 0.6.0 (2023-06-21T12:50:52.946Z)
 - - -
 ## :hammer: Features
