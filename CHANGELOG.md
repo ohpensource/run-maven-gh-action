@@ -1,3 +1,11 @@
+# :confetti_ball: 0.8.0 (2023-09-27T10:01:52.632Z)
+- - -
+## :hammer: Features
+* HUBSA-2346 use PLUGINS_AWS_PROFILE instead of standard AWS_PROFILE (used internally by AWS SDK v1 and v2) for avoid problems in OhpenMavenPlugins
+## :newspaper: Others
+* docs: HUBSA-2346 added hint about PLUGINS_AWS_PROFILE to README file
+- - -
+- - -
 # :confetti_ball: 0.7.0 (2023-07-12T10:09:15.804Z)
 - - -
 ## :hammer: Features
