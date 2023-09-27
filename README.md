@@ -4,7 +4,7 @@
 * Includes saving cache after build. 
 * Maven run command uses: **maven-aws-profile** for running build. 
 * It sets also environment variables to be backward compatible with AWS SDK v.1.
-** for this purpose is used **plugins-aws-profile** if not set, then: **maven-aws-profile**
+** for this purpose is used **plugins-aws-profile** (set for **PLUGINS_AWS_PROFILE** environment variable) if not set, then: **maven-aws-profile**
 
 ```yaml
       - uses: ohpensource/run-maven-gh-action@v0.1.0

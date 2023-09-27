@@ -107,7 +107,7 @@ runs:
         ${{ inputs.phases }}
       env:
         MAVEN_AWS_PROFILE: ${{ inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }}
-        AWS_PROFILE: ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }}
+        PLUGINS_AWS_PROFILE: ${{ inputs.plugins-aws-profile || inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }}
 
         # DEPRECATED: Used for assuming role via env credentials provider in SDK 1
         AWS_ACCESS_KEY_ID: ${{ steps.prepare-plugins-credentials.outputs.aws_access_key_id }}
