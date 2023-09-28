@@ -1,3 +1,9 @@
+# :confetti_ball: 0.9.0 (2023-09-28T09:07:14.376Z)
+- - -
+## :hammer: Features
+* HUBSA-2346 added back AWS_PROFILE which is used in StsAssumeRoleCredentialsProvider and in old OhpenMavenPlugin and DVPCOMMONS maven plugins (#13)
+- - -
+- - -
 # :confetti_ball: 0.8.0 (2023-09-27T10:01:52.632Z)
 - - -
 ## :hammer: Features
