@@ -1,3 +1,11 @@
+# :confetti_ball: 0.10.0 (2024-01-26T13:20:38.048Z)
+- - -
+## :hammer: Features
+* CMM-22507 always show full stack-trace of error
+## :newspaper: Others
+* docs: CMM-22507 remove empty line
+- - -
+- - -
 # :confetti_ball: 0.9.0 (2023-09-28T09:07:14.376Z)
 - - -
 ## :hammer: Features
