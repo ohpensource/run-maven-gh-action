@@ -104,6 +104,7 @@ runs:
           --update-snapshots \
           --batch-mode \
           --fail-at-end \
+          --errors \
         ${{ inputs.phases }}
       env:
         MAVEN_AWS_PROFILE: ${{ inputs.maven-aws-profile || env.MAVEN_AWS_PROFILE }}
